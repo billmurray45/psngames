@@ -1,9 +1,6 @@
-import uuid
-
 from datetime import datetime
 from sqlalchemy import String, DateTime, Boolean, func
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.dialects.postgresql import UUID
 
 from app.core.database import Base
 
@@ -11,10 +8,8 @@ from app.core.database import Base
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
+    id: Mapped[int] = mapped_column(
         primary_key=True,
-        default=uuid.uuid4,
         index=True
     )
 
