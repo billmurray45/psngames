@@ -1,7 +1,12 @@
-from fastapi import FastAPI
 import uvicorn
 
-app = FastAPI()
+from fastapi import FastAPI
+
+app = FastAPI(
+    title="PSN Games",
+    description="Digital online shop for Playstation Network games",
+    version="1.0.0",
+)
 
 
 @app.get("/")
