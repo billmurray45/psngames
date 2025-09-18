@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0" />
+        <link rel="shortcut icon" href="/images/favicon.png" />
+        <link rel="manifest" href="manifest.webmanifest">
+        <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+        <link href="{{ url_for('static', path='styles/swiper.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ url_for('static', path='styles/eassistant.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ url_for('static', path='styles/engine.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ url_for('static', path='styles/styles.css') }}" type="text/css" rel="stylesheet" />
+</head>
+    <body>
+        {AJAX}
+        <div class="wrapper">
+            {include file="main-header.tpl"}
+            [available=main]{include file="main-page.tpl"}[/available]
+            [not-available=main|cat|lastnews|xfsearch|favorites|tags|newposts|search]
+            	<div class="content container">{speedbar}{info}{content}</div>
+            [/not-available]
+            [available=cat|lastnews|xfsearch|favorites|tags|newposts|search]
+            <div class="dle-filter content container">
+                {include file="filter.tpl"}
+                <main>
+                    {speedbar}
+                    [aviable=cat]<h1>{category-title}</h1><p>{category-description}</p>[/aviable]
+                    [aviable=favorites]<h1>Закладки</h1>[/aviable]
+                    [aviable=lastnews]<h1>Новое на сайте</h1>[/aviable]
+                    [aviable=xfsearch][xfnme]<h1>{xfnme}</h1>[/xfnme][/aviable]
+                    <div class="e-grid4">{info}{content}</div>
+                </main>
+            </div>
+            [/available]
+            {include file="main-footer.tpl"}
+        </div>
+
+        <script src="/js/swiper.min.js"></script>
+        <script src="/js/libs.js"></script>
+        [not-group=1]<script src="/js/content-protector.min.js?v=2.0.0"></script>[/not-group]
+
+    </body>
+</html>
